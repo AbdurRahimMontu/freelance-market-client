@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import AuthContext from '../Provider/AuthContext';
 
 const Login = () => {
-   const handleLoginInUser=(e)=>{
+  const {signInUser} = use(AuthContext)
+   const handleLogInUser=(e)=>{
     e.preventDefault();
   
     const email = e.target.email.value;
     const password = e.target.password.value;
     const loginUser = { email,password}
     console.log(loginUser);
+    signInUser(email,password)
+    .then(result=>{
+         e.target.reset()
+         console.log(result);
+    }).catch(error=>{
+      console.log(error);
+    })
 
  }
     return (
@@ -16,12 +25,12 @@ const Login = () => {
        <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
          <div className="card-body">
              <h1 className="text-3xl font-bold text-center">Login now!</h1>
-           <form onSubmit={handleLoginInUser} className="fieldset">
+           <form onSubmit={handleLogInUser} className="fieldset">
            <div className=''>
                <input type="email" className="input w-full" placeholder="Enter Your Email" name='email' />
            </div>
            <div className=''>
-               <input type="password" className="input w-full" placeholder="Enter Your Password" name='password' />
+               <input type="text" className="input w-full" placeholder="Enter Your Password" name='password' />
            </div>
    
       
