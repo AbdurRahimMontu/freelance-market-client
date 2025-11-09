@@ -8,8 +8,23 @@ const TopCategories = () => {
 <div className="bg-base-300">
         <div className="w-11/12 mx-auto">
       <h2 className="text-3xl font-bold py-5 text-center">Top Category</h2>
-      <div className="grid grid-cols-1   gap-5 md:grid-cols-3 pb-10">
+      <div className="grid grid-cols-1   gap-5 md:grid-cols-2 lg:grid-cols-4 pb-10">
         <div className="p-5 shadow-lg bg-white flex flex-col gap-4 ">
+          <div>
+            <img src={category1} alt="" className="w-full" />
+          </div>
+         <div>
+             <h3 className="text-2xl">Programming & Tech</h3>
+          <ul>
+            <li className="flex justify-between text-xl">App Development <span>(0)</span> </li>
+            <li className="flex justify-between text-xl">Blockchain <span> (1)</span></li>
+            <li className="flex justify-between text-xl">Game Development <span>(0)</span> </li>
+            <li className="flex justify-between text-xl">Software Development <span>(2)</span> </li>
+            <li className="flex justify-between text-xl">Website Development <span>(4)</span> </li>
+          </ul>
+         </div>
+        </div>
+                <div className="p-5 shadow-lg bg-white flex flex-col gap-4 ">
           <div>
             <img src={category1} alt="" className="w-full" />
           </div>
