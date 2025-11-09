@@ -16,7 +16,7 @@ const Routes = createBrowserRouter([
     children:[
         {
             path:"/",
-            element:<Home></Home>
+            element:<Home></Home>,
         },
         {
             path:"/allJobs",

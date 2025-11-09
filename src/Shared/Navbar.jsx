@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
+import AuthContext from '../Provider/AuthContext';
 
 const Navbar = () => {
+  const {user,signOutUser} =use(AuthContext)
+   
+  console.log(user);
     const links = <>
      <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 font-semibold":"font-semibold"} to="/">Home</NavLink></li>
      <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 font-semibold":"font-semibold"} to="/allJobs">All Jobs</NavLink></li>
@@ -9,6 +13,15 @@ const Navbar = () => {
      <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 font-semibold":"font-semibold"} to="/myAcceptedTasks">My Accepted Tasks</NavLink></li>
    
     </>
+      const handleSignOut=()=>{
+      signOutUser()
+     .then((result)=>{
+        console.log(result);
+     })
+     .catch(error=>{
+      console.log(error);
+     })
+     }
     return (
         <div className='shadow-sm bg-base-100'>
          <div className="navbar  w-11/12 mx-auto  px-0">
@@ -21,11 +34,11 @@ const Navbar = () => {
       { links }
     </ul>
   </div>
-  <div className="navbar-end space-x-3">
-   <NavLink className={({isActive})=>isActive?"bg-purple-700 text-white btn btn-outline":"btn btn-outline"} to="login">Login</NavLink>
-    <NavLink className={({isActive})=>isActive?"bg-purple-700 text-white btn btn-outline":"btn btn-outline"} to="/register">Register</NavLink>
-     
-     <div className="dropdown dropdown-end block md:hidden">
+  <div className="navbar-end ">
+
+{
+    user ? (
+<div className="dropdown dropdown-end block ">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
            <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
@@ -36,9 +49,25 @@ const Navbar = () => {
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
          { links }
-         <button className='btn bg-purple-800 text-white font-semibold'>LogOut</button>
+         <button onClick={handleSignOut} className='btn bg-purple-800 text-white font-semibold'>LogOut</button>
       </ul>
     </div>
+    )
+    :
+    (
+      <div className='space-x-3'>
+     <NavLink className={({isActive})=>isActive?"bg-purple-700 text-white btn btn-outline":"btn btn-outline"} to="login">Login</NavLink>
+    <NavLink className={({isActive})=>isActive?"bg-purple-700 text-white btn btn-outline":"btn btn-outline"} to="/register">Register</NavLink>
+    </div>
+     
+    )
+}
+   
+     
+    
+    
+
+
   </div>
 </div>
         </div>

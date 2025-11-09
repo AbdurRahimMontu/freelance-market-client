@@ -2,12 +2,21 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Login = () => {
+   const handleLoginInUser=(e)=>{
+    e.preventDefault();
+  
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const loginUser = { email,password}
+    console.log(loginUser);
+
+ }
     return (
         <div className="hero bg-base-200 py-5">
        <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
          <div className="card-body">
              <h1 className="text-3xl font-bold text-center">Login now!</h1>
-           <form className="fieldset">
+           <form onSubmit={handleLoginInUser} className="fieldset">
            <div className=''>
                <input type="email" className="input w-full" placeholder="Enter Your Email" name='email' />
            </div>
