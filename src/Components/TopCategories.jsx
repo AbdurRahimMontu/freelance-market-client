@@ -8,10 +8,10 @@ const TopCategories = () => {
 <div className="bg-base-300">
         <div className="w-11/12 mx-auto">
       <h2 className="text-3xl font-bold py-5 text-center">Top Category</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3 pb-10">
+      <div className="grid grid-cols-1   gap-5 md:grid-cols-3 pb-10">
         <div className="p-5 shadow-lg bg-white flex flex-col gap-4 ">
           <div>
-            <img src={category1} alt="" />
+            <img src={category1} alt="" className="w-full" />
           </div>
          <div>
              <h3 className="text-2xl">Programming & Tech</h3>
@@ -26,7 +26,7 @@ const TopCategories = () => {
         </div>
        <div className="p-5 shadow-lg bg-white flex flex-col gap-4 ">
           <div>
-            <img src={category2} alt="" />
+            <img src={category2} alt="" className="w-full" />
           </div>
          <div> 
             <h3 className="text-2xl"> Graphics & Design</h3>
@@ -40,7 +40,7 @@ const TopCategories = () => {
         </div>
        <div className="p-5 shadow-lg bg-white flex flex-col gap-4">
           <div>
-            <img src={category3} alt="" />
+            <img src={category3} alt="" className="w-full"/>
           </div>
          <div>
              <h3 className="text-2xl"> Digital Marketing</h3>
