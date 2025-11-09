@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import AuthContext from '../Provider/AuthContext';
 import { toast } from 'react-toastify';
@@ -6,7 +6,8 @@ import { toast } from 'react-toastify';
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const {signInUser, setUser, googleSignIn} = use(AuthContext)
+  const refEmail = useRef()
+  const {signInUser, setUser, googleSignIn, forgotPass} = use(AuthContext)
    const handleLogInUser=(e)=>{
     e.preventDefault();
   
@@ -20,23 +21,37 @@ const Login = () => {
     if(!regex.test(password)){
       toast("password must 6 character and with one upperCase and one lowerCase")
     }
-
+    
+    
     signInUser(email,password)
     .then(result=>{
       toast.success(' Successfully Login ',{position: "bottom-right",
-});
+      });
       const user = result.user;
       setUser(user)
       navigate(`${location.state? location.state : "/"}`)
-         e.target.reset()
-         console.log(result);
+      e.target.reset()
+      console.log(result);
     }).catch(error=>{
       console.log(error);
       toast.warn('not login successful ',{position: "bottom-right",
-});
+      });
     })
+    
+  }
 
- }
+  const handleResetPass=()=>{
+
+   const email = refEmail.current.value;
+   forgotPass(email)
+   .then(result=>{
+    toast("password send email")
+    console.log(result);
+
+   }).catch(error=>{
+    console.log(error);
+   })
+  }  
 
   const handleGoogleSignIn=()=>{
       googleSignIn()
@@ -54,14 +69,14 @@ const Login = () => {
              <h1 className="text-3xl font-bold text-center">Login now!</h1>
            <form onSubmit={handleLogInUser} className="fieldset">
            <div className=''>
-               <input type="email" className="input w-full" placeholder="Enter Your Email" name='email' />
+               <input type="email" ref={refEmail} className="input w-full" placeholder="Enter Your Email" name='email' />
            </div>
            <div className=''>
                <input type="text" className="input w-full" placeholder="Enter Your Password" name='password' />
            </div>
    
       
-             <button type='button' className='text-start cursor-pointer'>Forgot Password</button>
+             <button onClick={handleResetPass} type='button' className='text-start cursor-pointer'>Forgot Password</button>
              <button className="btn bg-purple-700 text-white mt-4">Login</button>
              <p>Do Not Have Account ? please <Link to="/register" className='text-purple-700 border-b-2 font-semibold'>Register</Link>  </p>
              <button onClick={handleGoogleSignIn} className="btn bg-white text-black border-[#e5e5e5]">
