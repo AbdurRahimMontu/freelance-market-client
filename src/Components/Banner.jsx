@@ -16,48 +16,45 @@ import slide12 from "../assets/slide (12).jpg";
 
 const Banner = () => {
   return (
-    <div className="h-[580px]">
+    <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
       <Carousel showThumbs={false} autoPlay={true} stopOnHover={false} infiniteLoop={true}>
-        <div className="h-[580px]">
-          <img src={slide01} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide01} alt="Slide 01" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide02} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide02} alt="Slide 02" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide03} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide03} alt="Slide 03" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide04} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide04} alt="Slide 04" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide05} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide05} alt="Slide 05" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide06} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide06} alt="Slide 06" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide07} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide07} alt="Slide 07" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide08} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide08} alt="Slide 08" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide09} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide09} alt="Slide 09" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide10} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide10} alt="Slide 10" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide11} />
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide11} alt="Slide 11" className="w-full h-ful object-cover"/>
         </div>
-        <div className="h-[580px]">
-          <img src={slide12} />
-         
+        <div className="h-[250px] sm:h-[400px] md:h-[500px] lg:h-[580px]">
+          <img src={slide12} alt="Slide 12" className="w-full h-ful object-cover"/>
         </div>
-  
       </Carousel>
-   
     </div>
   );
 };
