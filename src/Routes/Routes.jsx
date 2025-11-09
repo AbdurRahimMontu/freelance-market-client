@@ -6,10 +6,13 @@ import AddAJob from '../Pages/AddAJob';
 import MyAcceptedTasks from '../Pages/MyAcceptedTasks';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
+import Home from '../Pages/Home';
+import ErrorPage from '../Pages/ErrorPage';
 const Routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<ErrorPage></ErrorPage>,
     children:[
         {
             path:"/",
@@ -24,7 +27,7 @@ const Routes = createBrowserRouter([
             element:<AddAJob></AddAJob>
         },
         {
-            path:"/mtAcceptedTasks",
+            path:"/myAcceptedTasks",
             element:<MyAcceptedTasks></MyAcceptedTasks>
         },
         {
