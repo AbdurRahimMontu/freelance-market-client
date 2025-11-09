@@ -8,6 +8,11 @@ import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import Home from '../Pages/Home';
 import ErrorPage from '../Pages/ErrorPage';
+import PrivateRoutes from './PrivateRoutes';
+import MyPostedJobs from '../Components/MyPostedJobs';
+import UpdateJob from '../Components/UpdateJob';
+import DeleteJob from '../Components/DeleteJob';
+import ViewDetails from '../Components/ViewDetails';
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -23,12 +28,22 @@ const Routes = createBrowserRouter([
             element:<AllJobs></AllJobs>
         },
         {
+            path:"/allJobs/:id",
+            element: <PrivateRoutes>
+                     <ViewDetails></ViewDetails>
+                      </PrivateRoutes>
+        },
+        {
             path:"/addAJob",
-            element:<AddAJob></AddAJob>
+            element:<PrivateRoutes>
+                    <AddAJob></AddAJob>
+                    </PrivateRoutes>
         },
         {
             path:"/myAcceptedTasks",
-            element:<MyAcceptedTasks></MyAcceptedTasks>
+            element:<PrivateRoutes>
+                     <MyAcceptedTasks></MyAcceptedTasks>
+                     </PrivateRoutes>
         },
         {
             path:"login",
@@ -37,9 +52,31 @@ const Routes = createBrowserRouter([
         {
             path:"register",
             element:<Register></Register>
+        },
+        {
+            path:"/myPostedJobs",
+            element:<PrivateRoutes><MyPostedJobs></MyPostedJobs></PrivateRoutes>
+
+        },
+        {
+            path:"/updateJob/:id",
+            element:<PrivateRoutes><UpdateJob></UpdateJob></PrivateRoutes>
+        },
+        {
+            path:"/deleteJob/:id",
+            element:<PrivateRoutes><DeleteJob></DeleteJob></PrivateRoutes>
+        },
+        {
+
         }
     ]
   },
 ]);
 
 export default Routes;
+
+//     - /myPostedJobs
+//     - /updateJob/:id
+//     - /deleteJob/:id
+//     - /allJobs/:id
+//     - /my-accepted-tasks
