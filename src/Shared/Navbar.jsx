@@ -34,20 +34,21 @@ const Navbar = () => {
       { links }
     </ul>
   </div>
-  <div className="navbar-end ">
+  <div className="navbar-end">
 
+
+     
 {
     user ? (
-<div className="dropdown dropdown-end block ">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-           <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
+
+<div className="dropdown dropdown-end  dropdown-hover block ">
+      <div tabIndex={0} role="button" className="btn  btn-ghost btn-circle avatar">
+        <div className="w-12 border rounded-full">
+           <img src={user.photoURL}/>
         </div>
       </div>
-
-      <ul
-        tabIndex="-1"
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+      <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+          <p className='text-center text-xl'>{user.displayName}</p>
          { links }
          <button onClick={handleSignOut} className='btn bg-purple-800 text-white font-semibold'>LogOut</button>
       </ul>
@@ -62,12 +63,6 @@ const Navbar = () => {
      
     )
 }
-   
-     
-    
-    
-
-
   </div>
 </div>
         </div>
