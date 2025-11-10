@@ -4,8 +4,6 @@ import AuthContext from '../Provider/AuthContext';
 
 const Navbar = () => {
   const {user,signOutUser} =use(AuthContext)
-   
-  console.log(user);
     const links = <>
      <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 font-semibold":"font-semibold"} to="/">Home</NavLink></li>
      <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 font-semibold":"font-semibold"} to="/allJobs">All Jobs</NavLink></li>
@@ -44,11 +42,13 @@ const Navbar = () => {
 <div className="dropdown dropdown-end  dropdown-hover block ">
       <div tabIndex={0} role="button" className="btn  btn-ghost btn-circle avatar">
         <div className="w-12 border rounded-full">
-           <img src={user.photoURL}/>
+       <img src={user && user.photoURL ? user.photoURL 
+         : "https://img.daisyui.com/images/profile/demo/batperson@192.webp"} alt="User"
+/>
         </div>
       </div>
       <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-          <p className='text-center text-xl'>{user.displayName}</p>
+          <p className='text-center text-xl'>{user && user.displayName ? user.displayName : "Guest"}</p>
          { links }
          <button onClick={handleSignOut} className='btn bg-purple-800 text-white font-semibold'>LogOut</button>
       </ul>

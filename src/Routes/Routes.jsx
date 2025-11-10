@@ -18,6 +18,7 @@ const Routes = createBrowserRouter([
     path: "/",
     element: <MainLayout></MainLayout>,
     errorElement:<ErrorPage></ErrorPage>,
+    hydrateFallbackElement:<span>Loading....</span>,
     children:[
         {
             path:"/",
@@ -25,7 +26,8 @@ const Routes = createBrowserRouter([
         },
         {
             path:"/allJobs",
-            element:<AllJobs></AllJobs>
+            element:<AllJobs></AllJobs>,
+            loader:()=>fetch('http://localhost:3000/allJobs')
         },
         {
             path:"/allJobs/:id",
