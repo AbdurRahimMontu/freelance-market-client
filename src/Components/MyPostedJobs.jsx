@@ -80,7 +80,7 @@ const MyPostedJobs = () => {
         <Link to={`/viewDetails/${job._id}`} className='btn w-full'>Delete</Link>
         </th>
         <th>
-        <Link to={`/viewDetails/${job._id}`} className='btn w-full'>Update</Link>
+        <Link to={`/updateJob/${job._id}`}  className='btn w-full'>Update</Link>
         </th>
         <th>
         <Link to={`/viewDetails/${job._id}`} className='btn w-full'>View Details</Link>
