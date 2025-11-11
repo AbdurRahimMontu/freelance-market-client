@@ -5,9 +5,6 @@ import { Navigate, useLocation } from 'react-router';
 const PrivateRoutes = ({children}) => {
     const {user, loading} = use(AuthContext)
     const location = useLocation()
- 
-    console.log(location);
-   
    if(loading){
     return <span>Loading.....</span>
    }else if(user&& user?.email){

@@ -30,6 +30,7 @@ const Navbar = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
       { links }
+      
     </ul>
   </div>
   <div className="navbar-end">
@@ -50,7 +51,8 @@ const Navbar = () => {
       <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
           <p className='text-center text-xl'>{user && user.displayName ? user.displayName : "Guest"}</p>
          { links }
-         <button onClick={handleSignOut} className='btn bg-purple-800 text-white font-semibold'>LogOut</button>
+              <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 pb-2 font-semibold":"font-semibold"} to="/myPostedJobs">My Posted Jobs</NavLink></li>
+         <button onClick={handleSignOut} className='btn  bg-purple-800 text-white font-semibold'>LogOut</button>
       </ul>
     </div>
     )

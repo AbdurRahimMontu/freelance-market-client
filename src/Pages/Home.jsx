@@ -3,12 +3,23 @@ import Banner from '../Components/Banner';
 import LatestJobs from '../Components/LatestJobs';
 import TopCategories from '../Components/TopCategories';
 import ClientComment from '../Components/ClientComment';
+import { useLoaderData } from 'react-router';
+import JobCard from '../Components/JobCard';
 
 const Home = () => {
+const jobs = useLoaderData()
+console.log(jobs);
     return (
         <div>
             <Banner></Banner>
-            <LatestJobs></LatestJobs>
+       <div className='bg-base-300'>
+        <h2 className='text-2xl font-semibold py-5 pt-15 text-center '>Latest Jobs</h2>
+            <div className='grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 w-11/12 mx-auto py-5'>
+           {
+            jobs.map(job=><JobCard key={job._id} job={job}></JobCard>)
+           }
+        </div>
+</div>
             <TopCategories></TopCategories>
             <ClientComment></ClientComment>
         </div>

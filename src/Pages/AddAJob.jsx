@@ -1,20 +1,53 @@
 import React from "react";
+import { use } from "react";
+import AuthContext from "../Provider/AuthContext";
 
 const AddAJob = () => {
+  const {user} = use(AuthContext)
+  const handleSubmitPost=(e)=>{
+  e.preventDefault();
+
+  const formData={
+    title : e.target.title.value,
+    postedBy: user.displayName,
+    category: e.target.category.value,
+    summary: e.target.summary.value,
+    coverImage: e.target.coverImage.value,
+    email : user.email,
+    postedDate: new Date()
+    
+  }
+  fetch('http://localhost:3000/allJobs',{
+    method:"POST",
+    headers:{
+      "Content-type":"Application/json"
+    },
+     body: JSON.stringify(formData) 
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    e.target.reset()
+    console.log(data)
+  })
+  .catch(error=>{
+     console.log(error)
+  })
+
+ }
   return (
  <div className="bg-base-300">
        <div className="border flex justify-center items-center">
       <div className=" card  w-full max-w-md shrink-0 shadow-2xl">
         <div className="card-body  border">
           <h1 className="text-3xl font-bold text-center">Add A Job</h1>
-          <form>
+          <form onSubmit={handleSubmitPost}>
             <div>
               <label className="label text-xl text-black">Title</label>
-              <input type="text" className="input w-full" placeholder="Enter Your Title" />
+              <input type="text" name="title" className="input w-full" placeholder="Enter Your Title" />
             </div>
             <div>
               <label className="label text-xl text-black">Posted By</label>
-              <input type="text" className="input w-full" placeholder="Enter Your Name" />
+              <input type="text" readOnly defaultValue={user.displayName} className="input w-full" placeholder="Enter Your Name" />
             </div>
             <div>
               <label className="label text-xl text-black">Category</label>
@@ -36,7 +69,7 @@ const AddAJob = () => {
             </div>
             <div>
               <label className="label text-xl text-black">Cover Photo</label>
-              <input type="photo" className="input w-full" placeholder="Enter Your Photo URL" />
+              <input type="photo" name="coverImage" className="input w-full" placeholder="Enter Your Photo URL" />
             </div>
             <button className="btn bg-purple-700 text-white font-semibold w-full mt-4">Add A Job</button>
           </form>
