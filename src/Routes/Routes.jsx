@@ -78,10 +78,7 @@ const Routes = createBrowserRouter([
             element:<PrivateRoutes><UpdateJob></UpdateJob></PrivateRoutes>,
     loader:({params})=>fetch(`http://localhost:3000/allJobs/${params.id}`)
         },
-        {
-            path:"/deleteJob/:id",
-            element:<PrivateRoutes><DeleteJob></DeleteJob></PrivateRoutes>
-        },
+
         {
 
         }

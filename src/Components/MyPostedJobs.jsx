@@ -1,28 +1,47 @@
 import React, { use, useEffect, useState } from 'react';
 import AuthContext from '../Provider/AuthContext';
-import JobCard from './JobCard';
-import { Link } from 'react-router';
+
+import { Link, useNavigate } from 'react-router';
 
 const MyPostedJobs = () => {
     const {user} = use(AuthContext)
     const [jobs, setJobs] = useState([])
- 
+    const navigate = useNavigate()
+     
 
     useEffect(()=>{
     fetch(`http://localhost:3000/myPostedJobs?email=${user.email}`)
     .then(res=>res.json())
     .then(data=>{
       setJobs(data)
-
-      console.log(data)
+    
+     
     })
   },[user.email])
+
+const handleDelete=(_id)=>{
+console.log("click delete");
+    fetch(`http://localhost:3000/allJobs/${_id}`,{
+    method:"DELETE"
+    },)
+  .then(res=>res.json())
+  .then(data=>{
+     navigate('/allJobs')
+    console.log(data)
+
+  })
+  .catch(error=>{
+     console.log(error)
+  })
+     }
+
+    
 
 
 
     return (
         <div >
-   <div className='bg-base-300 pt-5'>
+   <div className='bg-base-300 py-10'>
     <h2 className='text-2xl font-semibold text-center'>My Posted Jobs</h2>
             <div className='gap-5 w-11/12 mx-auto'>
            
@@ -77,7 +96,7 @@ const MyPostedJobs = () => {
         <td>Purple</td>
 
         <th>
-        <Link to={`/viewDetails/${job._id}`} className='btn w-full'>Delete</Link>
+        <button onClick={()=>handleDelete(job._id)} className='btn w-full'>Delete</button>
         </th>
         <th>
         <Link to={`/updateJob/${job._id}`}  className='btn w-full'>Update</Link>
@@ -91,7 +110,7 @@ const MyPostedJobs = () => {
   </table>
 </div>
         
-           }
+           
         </div>
 </div>
         </div>
@@ -99,3 +118,6 @@ const MyPostedJobs = () => {
 };
 
 export default MyPostedJobs;
+
+
+
