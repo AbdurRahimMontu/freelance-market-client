@@ -2,6 +2,7 @@ import React from "react";
 import { use } from "react";
 import AuthContext from "../Provider/AuthContext";
 import { motion } from 'motion/react';
+import { toast } from "react-toastify";
 
 const AddAJob = () => {
   const {user} = use(AuthContext)
@@ -27,6 +28,7 @@ const AddAJob = () => {
   })
   .then(res=>res.json())
   .then(data=>{
+    toast.success("Job SuccessFully Added")
     e.target.reset()
     console.log(data)
   })
@@ -37,9 +39,9 @@ const AddAJob = () => {
  }
   return (
  <div className="bg-base-300">
-       <div className="border flex justify-center items-center">
+       <div className=" flex justify-center items-center">
       <div className=" card  w-full max-w-md shrink-0 shadow-2xl">
-        <div className="card-body  border">
+        <div className="card-body bg-base-100 shadow-sm">
           <motion.h1 className="text-3xl font-bold text-center "   
           animate={{ x: [0, 100, 0],}} 
           transition={{duration: 2, repeat: 5 }}>Add A Job</motion.h1>

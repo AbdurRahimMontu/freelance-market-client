@@ -30,7 +30,7 @@ const Routes = createBrowserRouter([
         {
             path:"/allJobs",
             element:<AllJobs></AllJobs>,
-             loader:()=>fetch('http://localhost:3000/allJobs')
+            //  loader:()=>fetch('http://localhost:3000/allJobs')
          
         },
         {
@@ -41,14 +41,7 @@ const Routes = createBrowserRouter([
     loader:({params})=>fetch(`http://localhost:3000/allJobs/${params.id}`)
 
         },
-        // {
-        //      path:"/latestJobs",
-        //     element: <PrivateRoutes>
-        //              <LatestJobs></LatestJobs>
-        //                </PrivateRoutes>,
-       
-               
-        // },
+ 
         {
             path:"/addAJob",
             element:<PrivateRoutes>
@@ -90,8 +83,3 @@ const Routes = createBrowserRouter([
 
 export default Routes;
 
-//     - /myPostedJobs
-//     - /updateJob/:id
-//     - /deleteJob/:id
-//     - /allJobs/:id
-//     - /my-accepted-tasks

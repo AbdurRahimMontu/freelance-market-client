@@ -1,9 +1,11 @@
 import React, {use } from 'react';
-import { Link, useLoaderData } from 'react-router';
+import { Link, useLoaderData, useNavigate } from 'react-router';
 import AuthContext from '../Provider/AuthContext';
+import { toast } from 'react-toastify';
 
 const ViewDetails = () => {
   const {user} = use(AuthContext)
+  const navigate = useNavigate()
    const job = useLoaderData()
   const {title, category, postedBy,  summary, coverImage} = job;
 
@@ -17,9 +19,9 @@ const ViewDetails = () => {
       body: JSON.stringify({userEmail:user.email}),
     })
       .then((data) => {
-      
-        console.log(data);
-        window.location.href = "/myAcceptedTasks"; 
+        toast.success(data, "accept successful")
+       console.log(data);
+       navigate ("/myAcceptedTasks"); 
       });
   };
 

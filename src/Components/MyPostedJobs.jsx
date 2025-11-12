@@ -50,15 +50,15 @@ console.log("click delete");
   <table className="table">
     {/* head */}
     <thead>
-      <tr className='text-center'>
-        <th>
-          <label>
+      <tr className='text-center bg-purple-700 text-white'>
+        <th className="">
+          <label >
             <input type="checkbox" className="checkbox" />
           </label>
         </th>
         <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th>Job Title</th>
+        <th>Job Category</th>
         <th>Delete</th>
         <th>Update</th>
         <th>View</th>
@@ -67,7 +67,7 @@ console.log("click delete");
     <tbody>
       {/* row 1 */}
     {jobs?.map(job=>(
-      <tr key={job._id}>
+      <tr key={job._id} >
         <th>
           <label>
             <input type="checkbox" className="checkbox" />
@@ -90,19 +90,18 @@ console.log("click delete");
         </td>
         <td>
           <span className='text-xl font-semibold'>{job.title}</span>
-          <br />
-          <span className="badge bg-purple-700 text-white p-3">{job.category}</span>
         </td>
-        <td>Purple</td>
-
         <th>
-        <button onClick={()=>handleDelete(job._id)} className='btn w-full'>Delete</button>
+           <span className="badge bg-purple-600 py-4 text-white p-3">{job.category}</span>
         </th>
         <th>
-        <Link to={`/updateJob/${job._id}`}  className='btn w-full'>Update</Link>
+        <button onClick={()=>handleDelete(job._id)} className='btn w-full bg-red-700 text-white'>Delete</button>
         </th>
         <th>
-        <Link to={`/viewDetails/${job._id}`} className='btn w-full'>View Details</Link>
+        <Link to={`/updateJob/${job._id}`}  className='btn w-full  bg-green-600 text-white'>Update</Link>
+        </th>
+        <th>
+        <Link to={`/viewDetails/${job._id}`} className='btn w-full  bg-purple-600 text-white'>View Details</Link>
         </th>
       </tr>))}
     </tbody>

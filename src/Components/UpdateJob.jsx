@@ -3,6 +3,7 @@ import React, { use } from "react";
 
 import { useLoaderData } from "react-router";
 import AuthContext from "../Provider/AuthContext";
+import { toast } from "react-toastify";
 
 const UpdateJob = () => {
     const {user} = use(AuthContext)
@@ -28,6 +29,7 @@ const handleSubmitPut=(e)=>{
   })
   .then(res=>res.json())
   .then(data=>{
+    toast.success("Updated Job Successful")
     e.target.reset()
     console.log(data)
     

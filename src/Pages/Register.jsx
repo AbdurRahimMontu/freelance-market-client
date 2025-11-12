@@ -1,12 +1,13 @@
-import { use } from 'react';
+import { use, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import AuthContext from '../Provider/AuthContext';
 import { toast } from 'react-toastify';
-
+import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 
 
 const Register = () => {
  const {createUser, setUser, googleSignIn} = use(AuthContext);
+  const [show, setShow] = useState(false);
  const location = useLocation();
  const navigate = useNavigate()
  const handleCreateUser=(e)=>{
@@ -16,13 +17,17 @@ const Register = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
   
-  
-
+        const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    
+        if(!regex.test(password)){
+          toast.warn("password must 6 character and with one upperCase and one lowerCase")
+          return;
+        }
      createUser(email,password)
      .then((result) => {
       toast.success("register successful")
       const user = result.user;
-        setUser(user)
+        setUser({...user, displayName: name, photoUrl:photo})
         navigate(`${location.state? location.state : "/"}`)
          console.log(user);
          e.target.reset();
@@ -40,6 +45,7 @@ const Register = () => {
       googleSignIn()
       .then(result=>{
          navigate(`${location.state? location.state : "/"}`)
+          toast.success("Login successful")
         console.log(result);
       }).catch(error=>{
         console.log(error);
@@ -62,9 +68,10 @@ const Register = () => {
         <div className=''>
             <input type="email" className="input w-full" placeholder="Enter Your Email" name='email' />
         </div>
-        <div className=''>
-            <input type="password" className="input w-full" placeholder="Enter Your Password" name='password' />
-        </div>
+    <div className='relative'>
+                  <input type={show? "text": "password"} className="input w-full" placeholder="Enter Your Password" name='password' />
+                  <span onClick={()=>setShow(!show)} className='absolute z-10 cursor-pointer right-3 top-2'>{show?<FaEye size={20}/>:<FaEyeSlash size={20}/>}</span>
+              </div>
 
    
           <button type='button' className='text-start cursor-pointer'>Forgot Password</button>

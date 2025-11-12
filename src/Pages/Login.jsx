@@ -1,11 +1,13 @@
-import React, { use, useRef } from 'react';
+import React, { use, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import AuthContext from '../Provider/AuthContext';
 import { toast } from 'react-toastify';
+import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const [show, setShow] = useState(false);
   const refEmail = useRef()
   const {signInUser, setUser, googleSignIn, forgotPass} = use(AuthContext)
    const handleLogInUser=(e)=>{
@@ -19,7 +21,8 @@ const Login = () => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
     if(!regex.test(password)){
-      toast("password must 6 character and with one upperCase and one lowerCase")
+      toast.warn("password must 6 character and with one upperCase and one lowerCase")
+      return;
     }
     
     
@@ -30,9 +33,11 @@ const Login = () => {
       const user = result.user;
       setUser(user)
       navigate(`${location.state? location.state : "/"}`)
+      toast.success("SignIn Successfully")
       e.target.reset()
       console.log(result);
     }).catch(error=>{
+      toast.warn(error.message)
       console.log(error);
       toast.warn('not login successful ',{position: "bottom-right",
       });
@@ -49,6 +54,7 @@ const Login = () => {
     console.log(result);
 
    }).catch(error=>{
+    toast.warn(error.message)
     console.log(error);
    })
   }  
@@ -57,8 +63,10 @@ const Login = () => {
       googleSignIn()
       .then(result=>{
          navigate(`${location.state? location.state : "/"}`)
+          toast.success("SignIn Successfully")
         console.log(result);
       }).catch(error=>{
+          toast.warn(error.message)
         console.log(error);
       })
     }
@@ -71,8 +79,10 @@ const Login = () => {
            <div className=''>
                <input type="email" ref={refEmail} className="input w-full" placeholder="Enter Your Email" name='email' />
            </div>
-           <div className=''>
-               <input type="text" className="input w-full" placeholder="Enter Your Password" name='password' />
+
+           <div className='relative'>
+               <input type={show? "text": "password"} className="input w-full" placeholder="Enter Your Password" name='password' />
+               <span onClick={()=>setShow(!show)} className='absolute z-10 cursor-pointer right-3 top-2'>{show?<FaEye size={20}/>:<FaEyeSlash size={20}/>}</span>
            </div>
    
       

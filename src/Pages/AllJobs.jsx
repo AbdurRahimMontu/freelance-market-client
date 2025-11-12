@@ -1,12 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { useLoaderData } from 'react-router';
+// import { useLoaderData } from 'react-router';
 import JobCard from '../Components/JobCard';
 
 const AllJobs = () => {
-  const jobs = useLoaderData(); 
-  console.log(jobs);
+  // const jobs = useLoaderData(); 
+  // console.log(jobs);
+  const [jobs, setJobs]=useState([])
   const [sortOrder, setSortOrder] = useState("desc"); 
   const [sortedJobs, setSortedJobs] = useState([]);
+ 
+  const [loading, setLoading] = useState(true);
+
+
+
+  useEffect(()=>{
+    setLoading(true)
+    fetch('http://localhost:3000/allJobs')
+    .then(res=>res.json())
+    .then(data=>{
+      setLoading(false)
+      console.log(data);
+      setJobs(data)
+    })
+  },[])
 
   useEffect(() => {
     if (jobs?.length > 0) {
@@ -18,6 +34,15 @@ const AllJobs = () => {
       setSortedJobs(sorted);
     }
   }, [sortOrder, jobs]);
+
+ 
+  if (loading) {
+    return  <div className="flex justify-center items-center h-screen bg-base-200">
+      <div className="w-16 h-16 border-4 border-dashed border-blue-500 rounded-full animate-spin"></div>
+    </div>
+  }
+
+
 
   return (
     <div className="bg-base-300 min-h-screen pb-8 pt-4">
