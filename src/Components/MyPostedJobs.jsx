@@ -60,8 +60,8 @@ console.log("click delete");
         <th>Job</th>
         <th>Favorite Color</th>
         <th>Delete</th>
-        <th>Delete</th>
-        <th>Delete</th>
+        <th>Update</th>
+        <th>View</th>
       </tr>
     </thead>
     <tbody>

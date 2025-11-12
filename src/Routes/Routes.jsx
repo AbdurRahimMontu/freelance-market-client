@@ -11,9 +11,9 @@ import ErrorPage from '../Pages/ErrorPage';
 import PrivateRoutes from './PrivateRoutes';
 import MyPostedJobs from '../Components/MyPostedJobs';
 import UpdateJob from '../Components/UpdateJob';
-import DeleteJob from '../Components/DeleteJob';
+
 import ViewDetails from '../Components/ViewDetails';
-import LatestJobs from '../Components/LatestJobs';
+
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -40,14 +40,15 @@ const Routes = createBrowserRouter([
                       </PrivateRoutes>,
     loader:({params})=>fetch(`http://localhost:3000/allJobs/${params.id}`)
 
-        },{
-             path:"/latestJobs",
-            element: <PrivateRoutes>
-                     <LatestJobs></LatestJobs>
-                       </PrivateRoutes>,
+        },
+        // {
+        //      path:"/latestJobs",
+        //     element: <PrivateRoutes>
+        //              <LatestJobs></LatestJobs>
+        //                </PrivateRoutes>,
        
                
-        },
+        // },
         {
             path:"/addAJob",
             element:<PrivateRoutes>
@@ -58,7 +59,8 @@ const Routes = createBrowserRouter([
             path:"/myAcceptedTasks",
             element:<PrivateRoutes>
                      <MyAcceptedTasks></MyAcceptedTasks>
-                     </PrivateRoutes>
+                     </PrivateRoutes>,
+  
         },
         {
             path:"login",

@@ -1,14 +1,20 @@
-import React from 'react';
+
 import { Link } from 'react-router';
+import { motion } from 'motion/react';
 
 const JobCard = ({job}) => {
      const {_id, title, category, postedBy,  summary, coverImage} = job;
+
     return (
         <div className=''>
 
 
-    <div className="p-5 bg-base-100 shadow-xl flex flex-col justify-between">
+    <motion.div  whileHover={{
+        scale: 1.1,
+      }} className="p-5 bg-base-100 shadow-xl flex flex-col justify-between">
       <div>
+        
+
         <img src={coverImage} alt="" className="w-full " />
         <div className="px-4 pt-4">
           <h2 className="text-xl font-semibold mb-2">{title}</h2>
@@ -22,7 +28,7 @@ const JobCard = ({job}) => {
       <div className=" pb-5 pt-3 mt-auto">
       <Link to={`/viewDetails/${_id}`} className='btn w-full'>View Details</Link>
       </div>
-    </div>
+    </motion.div>
 
 
 

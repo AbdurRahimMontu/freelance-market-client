@@ -3,16 +3,19 @@ import client1 from "../assets/Client1.jpg";
 import client2 from "../assets/Client2.jpg";
 import client3 from "../assets/Client3.jpg";
 import client4 from "../assets/Client4.jpg";
+import { motion } from 'motion/react';
 
 const ClientComment = () => {
   return (
  <div className="bg-base-300 py-5 ">
-    <h2 className="text-2xl text-center py-5 bg-white font-bold">Client Comment</h2>
+    <h2 className="text-2xl text-center py-5 font-bold">Client Comment</h2>
    <div className="grid lg:grid-cols-4 pt-5 md:grid-cols-2 grid-cols-1 w-11/12 mx-auto gap-8">
 
   <div className="hero bg-base-100 rounded-2xl shadow-md p-6 hover:shadow-lg transition">
       <div className="hero-content flex flex-col items-center text-center">
-        <img
+        <motion.img whileHover={{
+        scale: 1.2,
+      }}
           src={client1}
           alt="Client1"
           className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-full shadow"
@@ -26,7 +29,9 @@ const ClientComment = () => {
 
  <div className="hero bg-base-100 rounded-2xl shadow-md p-6 hover:shadow-lg transition">
       <div className="hero-content flex flex-col items-center text-center">
-        <img
+        <motion.img whileHover={{
+        scale: 1.2,
+      }}
           src={client2}
           alt="Client2"
           className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-full shadow"
@@ -43,7 +48,9 @@ const ClientComment = () => {
     </div>
  <div className="hero bg-base-100 rounded-2xl shadow-md p-6 hover:shadow-lg transition">
       <div className="hero-content flex flex-col items-center text-center">
-        <img
+        <motion.img whileHover={{
+        scale: 1.2,
+      }}
           src={client3}
           alt="Client3"
           className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-full shadow"
@@ -60,7 +67,9 @@ const ClientComment = () => {
     </div>
  <div className="hero bg-base-100 rounded-2xl shadow-md p-6 hover:shadow-lg transition">
       <div className="hero-content flex flex-col items-center text-center">
-        <img
+        <motion.img whileHover={{
+        scale: 1.2,
+      }}
           src={client4}
           alt="Client4"
           className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-full shadow"

@@ -1,6 +1,7 @@
 import React from "react";
 import { use } from "react";
 import AuthContext from "../Provider/AuthContext";
+import { motion } from 'motion/react';
 
 const AddAJob = () => {
   const {user} = use(AuthContext)
@@ -15,8 +16,8 @@ const AddAJob = () => {
     coverImage: e.target.coverImage.value,
     email : user.email,
     postedDate: new Date()
+    }
     
-  }
   fetch('http://localhost:3000/allJobs',{
     method:"POST",
     headers:{
@@ -39,18 +40,20 @@ const AddAJob = () => {
        <div className="border flex justify-center items-center">
       <div className=" card  w-full max-w-md shrink-0 shadow-2xl">
         <div className="card-body  border">
-          <h1 className="text-3xl font-bold text-center">Add A Job</h1>
+          <motion.h1 className="text-3xl font-bold text-center "   
+          animate={{ x: [0, 100, 0],}} 
+          transition={{duration: 2, repeat: 5 }}>Add A Job</motion.h1>
           <form onSubmit={handleSubmitPost}>
             <div>
-              <label className="label text-xl text-black">Title</label>
+              <label className="label text-xl ">Title</label>
               <input type="text" name="title" className="input w-full" placeholder="Enter Your Title" />
             </div>
             <div>
-              <label className="label text-xl text-black">Posted By</label>
+              <label className="label text-xl ">Posted By</label>
               <input type="text" readOnly defaultValue={user.displayName} className="input w-full" placeholder="Enter Your Name" />
             </div>
             <div>
-              <label className="label text-xl text-black">Category</label>
+              <label className="label text-xl ">Category</label>
         <select defaultValue="Select A Category" name="category" className="select appearance-none w-full">
             <option >Select A Category</option>
             <option>Graphics Design</option>
@@ -68,7 +71,7 @@ const AddAJob = () => {
             </fieldset>
             </div>
             <div>
-              <label className="label text-xl text-black">Cover Photo</label>
+              <label className="label text-xl ">Cover Photo</label>
               <input type="photo" name="coverImage" className="input w-full" placeholder="Enter Your Photo URL" />
             </div>
             <button className="btn bg-purple-700 text-white font-semibold w-full mt-4">Add A Job</button>

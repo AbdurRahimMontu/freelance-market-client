@@ -45,15 +45,15 @@ const handleSubmitPut=(e)=>{
           <h1 className="text-3xl font-bold text-center">Update Job</h1>
           <form onSubmit={handleSubmitPut}>
             <div>
-              <label className="label text-xl text-black">Title</label>
+              <label className="label text-xl ">Title</label>
               <input type="text" name="title" className="input w-full" placeholder="Enter Your Title" defaultValue={singleData.title}/>
             </div>
             <div>
-              <label className="label text-xl text-black">Posted By</label>
+              <label className="label text-xl ">Posted By</label>
               <input type="text" readOnly defaultValue={user.displayName} className="input w-full" placeholder="Enter Your Name" />
             </div>
             <div>
-              <label className="label text-xl text-black">Category</label>
+              <label className="label text-xl ">Category</label>
         <select defaultValue={singleData.category} name="category" className="select appearance-none w-full">
             <option >Select A Category</option>
             <option>Graphics Design</option>
@@ -71,7 +71,7 @@ const handleSubmitPut=(e)=>{
             </fieldset>
             </div>
             <div>
-              <label className="label text-xl text-black">Cover Photo</label>
+              <label className="label text-xl ">Cover Photo</label>
               <input type="photo" name="coverImage" className="input w-full" placeholder="Enter Your Photo URL" defaultValue={singleData.coverImage} />
             </div>
             <button className="btn bg-purple-700 text-white font-semibold w-full mt-4">Update Job</button>
