@@ -40,20 +40,16 @@ console.log("click delete");
     return (
         <div >
    <div className='bg-base-300 py-10'>
-    <h2 className='text-2xl font-semibold text-center'>My Posted Jobs</h2>
-            <div className='gap-5 w-11/12 mx-auto'>
+    <h2 className='text-3xl font-semibold text-center pb-5'>My Posted Jobs</h2>
+            <div className='gap-3 w-11/12 mx-auto'>
            
         
             <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
     <thead>
-      <tr className='text-center bg-purple-700 text-white'>
-        <th className="">
-          <label >
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
+      <tr className='text-center bg-purple-500 text-white'>
+   
         <th>Name</th>
         <th>Job Title</th>
         <th>Job Category</th>
@@ -66,13 +62,9 @@ console.log("click delete");
       {/* row 1 */}
     {jobs?.map(job=>(
       <tr key={job._id} >
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
+
         <td>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-5">
             <div className="avatar">
               <div className="mask mask-squircle h-12 w-12">
                 <img
@@ -82,25 +74,24 @@ console.log("click delete");
             </div>
             <div>
               <div className="font-bold">{user.displayName}</div>
-              <div className="text-sm opacity-50">Bangladesh</div>
             </div>
           </div>
         </td>
         <td>
-          <span className='text-xl font-semibold'>{job.title}</span>
+          <span className='text-xl  font-semibold'>{job.title}</span>
         </td>
-        <th>
-           <span className="badge bg-purple-600 py-4 text-white p-3">{job.category}</span>
-        </th>
-        <th>
-        <button onClick={()=>handleDelete(job._id)} className='btn w-full bg-red-700 text-white'>Delete</button>
-        </th>
-        <th>
-        <Link to={`/updateJob/${job._id}`}   className='btn w-full  bg-green-600 text-white'>Update</Link>
-        </th>
-        <th>
-        <Link to={`/viewDetails/${job._id}`} className='btn w-full  bg-purple-600 text-white'>View Details</Link>
-        </th>
+        <td>
+           <span className=" text-xl  font-semibold ">{job.category}</span>
+        </td>
+        <td>
+        <button onClick={()=>handleDelete(job._id)} className='btn w-full btn-outline hover:bg-purple-500 hover:text-white'>Delete</button>
+        </td>
+        <td>
+        <Link to={`/updateJob/${job._id}`}   className='btn w-full btn-outline hover:bg-purple-500 hover:text-white'>Update</Link>
+        </td>
+        <td>
+        <Link to={`/viewDetails/${job._id}`} className='btn w-full btn-outline hover:bg-purple-500 hover:text-white'>View Details</Link>
+        </td>
       </tr>))}
     </tbody>
 

@@ -9,10 +9,10 @@ const TopCategories = () => {
 <div className="bg-base-200">
         <div className="w-11/12 mx-auto">
       <h2 className="text-3xl font-bold py-5 text-center">Top Category</h2>
-      <div  className="grid grid-cols-1 bg-base-100  gap-5 md:grid-cols-2 lg:grid-cols-4 pb-10">
+      <div  className="grid grid-cols-1   gap-5 md:grid-cols-2 lg:grid-cols-4 pb-10">
         <motion.div whileHover={{
         scale: 1.1,
-      }} className="p-5 shadow-lg  flex flex-col gap-4 ">
+      }} className="p-5 shadow-lg bg-base-100  flex flex-col gap-4 ">
           <div>
             <img src={category1} alt="" className="w-full" />
           </div>
