@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Banner from "../Components/Banner";
-import TopCategories from "../Components/TopCategories";
 import ClientComment from "../Components/ClientComment";
 import JobCard from "../Components/JobCard";
-import axios from "axios";
+import TopCategories from "../Components/TopCategories";
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/latestJobs").then((data) => {
+    axios.get("https://freelance-market-server.vercel.app/latestJobs").then((data) => {
       setJobs(data.data);
       console.log(data.data);
     });

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import JobCard from "../Components/JobCard";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import JobCard from "../Components/JobCard";
 
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -10,7 +10,7 @@ const AllJobs = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("http://localhost:3000/allJobs").then((data) => {
+    axios.get("https://freelance-market-server.vercel.app/allJobs").then((data) => {
       setJobs(data.data);
       setLoading(false);
       console.log(data);

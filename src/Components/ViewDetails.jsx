@@ -1,7 +1,7 @@
-import React, { use } from "react";
-import { Link, useLoaderData, useNavigate } from "react-router";
-import AuthContext from "../Provider/AuthContext";
+import { use } from "react";
+import { useLoaderData, useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import AuthContext from "../Provider/AuthContext";
 
 const ViewDetails = () => {
   const { user } = use(AuthContext);
@@ -11,7 +11,7 @@ const ViewDetails = () => {
 
   const handleAccept = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/allJobs/${job._id}/accept`, {
+    fetch(`https://freelance-market-server.vercel.app/allJobs/${job._id}/accept`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userEmail: user.email }),

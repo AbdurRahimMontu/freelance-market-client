@@ -1,16 +1,15 @@
-import React from "react";
 import { createBrowserRouter } from "react-router";
-import MainLayout from "../Layouts/MainLayout";
-import AllJobs from "../Pages/AllJobs";
-import AddAJob from "../Pages/AddAJob";
-import MyAcceptedTasks from "../Pages/MyAcceptedTasks";
-import Login from "../Pages/Login";
-import Register from "../Pages/Register";
-import Home from "../Pages/Home";
-import ErrorPage from "../Pages/ErrorPage";
-import PrivateRoutes from "./PrivateRoutes";
 import MyPostedJobs from "../Components/MyPostedJobs";
 import UpdateJob from "../Components/UpdateJob";
+import MainLayout from "../Layouts/MainLayout";
+import AddAJob from "../Pages/AddAJob";
+import AllJobs from "../Pages/AllJobs";
+import ErrorPage from "../Pages/ErrorPage";
+import Home from "../Pages/Home";
+import Login from "../Pages/Login";
+import MyAcceptedTasks from "../Pages/MyAcceptedTasks";
+import Register from "../Pages/Register";
+import PrivateRoutes from "./PrivateRoutes";
 
 import ViewDetails from "../Components/ViewDetails";
 
@@ -37,7 +36,7 @@ const Routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/allJobs/${params.id}`),
+          fetch(`https://freelance-market-server.vercel.app/allJobs/${params.id}`),
       },
 
       {
@@ -80,7 +79,7 @@ const Routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/allJobs/${params.id}`),
+          fetch(`https://freelance-market-server.vercel.app/allJobs/${params.id}`),
       },
 
       {},

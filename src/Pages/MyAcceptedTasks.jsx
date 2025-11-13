@@ -1,7 +1,7 @@
-import React, { use, useEffect, useState } from "react";
-import AuthContext from "../Provider/AuthContext";
-import { motion } from "motion/react";
 import axios from "axios";
+import { motion } from "motion/react";
+import { use, useEffect, useState } from "react";
+import AuthContext from "../Provider/AuthContext";
 
 const MyAcceptedTasks = () => {
   const { user } = use(AuthContext);
@@ -9,7 +9,7 @@ const MyAcceptedTasks = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/myAcceptedTasks?userEmail=${user.email}`)
+      .get(`https://freelance-market-server.vercel.app/myAcceptedTasks?userEmail=${user.email}`)
       .then((data) => {
         setJobs(data.data);
       });
@@ -18,7 +18,7 @@ const MyAcceptedTasks = () => {
   const handleDelete = (_id) => {
     axios
       .delete(
-        `http://localhost:3000/myAcceptedTasks/${_id}?email=${user.email}`
+        `https://freelance-market-server.vercel.app/myAcceptedTasks/${_id}?email=${user.email}`
       )
       .then((data) => {
         console.log(data.data);

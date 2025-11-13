@@ -1,9 +1,8 @@
-import React from "react";
-import { use } from "react";
-import AuthContext from "../Provider/AuthContext";
-import { motion } from "motion/react";
-import { toast } from "react-toastify";
 import axios from "axios";
+import { motion } from "motion/react";
+import { use } from "react";
+import { toast } from "react-toastify";
+import AuthContext from "../Provider/AuthContext";
 
 const AddAJob = () => {
   const { user } = use(AuthContext);
@@ -21,7 +20,7 @@ const AddAJob = () => {
     };
 
     axios
-      .post("http://localhost:3000/allJobs", formData)
+      .post("https://freelance-market-server.vercel.app/allJobs", formData)
       .then((data) => {
         toast.success("Job SuccessFully Added");
         e.target.reset();

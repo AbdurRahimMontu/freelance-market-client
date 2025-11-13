@@ -1,8 +1,8 @@
-import React, { use, useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import AuthContext from '../Provider/AuthContext';
 
-import { Link, useNavigate } from 'react-router';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router';
 
 const MyPostedJobs = () => {
     const {user} = use(AuthContext)
@@ -11,7 +11,7 @@ const MyPostedJobs = () => {
      console.log(jobs);
 
     useEffect(()=>{
-    axios.get(`http://localhost:3000/myPostedJobs?email=${user.email}`)
+    axios.get(`https://freelance-market-server.vercel.app/myPostedJobs?email=${user.email}`)
     .then(data=>{
       setJobs(data.data)
     
@@ -22,7 +22,7 @@ const MyPostedJobs = () => {
 
 const handleDelete=(_id)=>{
 console.log("click delete");
-  axios.delete(`http://localhost:3000/allJobs/${_id}`)
+  axios.delete(`https://freelance-market-server.vercel.app/allJobs/${_id}`)
   .then(data=>{
      navigate('/allJobs')
     console.log(data)

@@ -1,8 +1,8 @@
-import React, { use } from "react";
-import AuthContext from "../Provider/AuthContext";
-import { toast } from "react-toastify";
 import axios from "axios";
+import { use } from "react";
 import { useLoaderData } from "react-router";
+import { toast } from "react-toastify";
+import AuthContext from "../Provider/AuthContext";
 
 const UpdateJob = () => {
   const { user } = use(AuthContext);
@@ -18,7 +18,7 @@ const UpdateJob = () => {
     };
 
     axios
-      .put(`http://localhost:3000/updateJobs/${job._id}`, formData)
+      .put(`https://freelance-market-server.vercel.app/updateJobs/${job._id}`, formData)
       .then((data) => {
         toast.success("Updated Job Successful");
         e.target.reset();
