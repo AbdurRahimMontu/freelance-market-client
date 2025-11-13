@@ -9,8 +9,7 @@ const Home = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/latestJobs")
-      .then((data) => {
+    axios.get("http://localhost:3000/latestJobs").then((data) => {
       setJobs(data.data);
       console.log(data.data);
     });
