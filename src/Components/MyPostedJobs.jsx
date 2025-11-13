@@ -2,18 +2,19 @@ import React, { use, useEffect, useState } from 'react';
 import AuthContext from '../Provider/AuthContext';
 
 import { Link, useNavigate } from 'react-router';
+import axios from 'axios';
 
 const MyPostedJobs = () => {
     const {user} = use(AuthContext)
     const [jobs, setJobs] = useState([])
     const navigate = useNavigate()
-     
+     console.log(jobs);
 
     useEffect(()=>{
-    fetch(`http://localhost:3000/myPostedJobs?email=${user.email}`)
-    .then(res=>res.json())
+    axios.get(`http://localhost:3000/myPostedJobs?email=${user.email}`)
     .then(data=>{
-      setJobs(data)
+      setJobs(data.data)
+    
     
      
     })
@@ -21,10 +22,7 @@ const MyPostedJobs = () => {
 
 const handleDelete=(_id)=>{
 console.log("click delete");
-    fetch(`http://localhost:3000/allJobs/${_id}`,{
-    method:"DELETE"
-    },)
-  .then(res=>res.json())
+  axios.delete(`http://localhost:3000/allJobs/${_id}`)
   .then(data=>{
      navigate('/allJobs')
     console.log(data)
@@ -98,7 +96,7 @@ console.log("click delete");
         <button onClick={()=>handleDelete(job._id)} className='btn w-full bg-red-700 text-white'>Delete</button>
         </th>
         <th>
-        <Link to={`/updateJob/${job._id}`}  className='btn w-full  bg-green-600 text-white'>Update</Link>
+        <Link to={`/updateJob/${job._id}`}   className='btn w-full  bg-green-600 text-white'>Update</Link>
         </th>
         <th>
         <Link to={`/viewDetails/${job._id}`} className='btn w-full  bg-purple-600 text-white'>View Details</Link>

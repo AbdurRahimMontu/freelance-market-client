@@ -1,30 +1,74 @@
-import React, { use, useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router';
-import AuthContext from '../Provider/AuthContext';
-import { toast } from 'react-toastify';
+import React, { use, useEffect, useState } from "react";
+import { Link, NavLink } from "react-router";
+import AuthContext from "../Provider/AuthContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const {user,signOutUser} =use(AuthContext)
-    const links = <>
-     <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 font-semibold":"font-semibold"} to="/">Home</NavLink></li>
-     <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 font-semibold":"font-semibold"} to="/allJobs">All Jobs</NavLink></li>
-     <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 font-semibold":"font-semibold"} to="/addAJob">Add A Job</NavLink></li>
-     <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 font-semibold":"font-semibold"} to="/myAcceptedTasks">My Accepted Tasks</NavLink></li>
-   
+  const { user, signOutUser } = use(AuthContext);
+  const links = (
+    <>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "text-purple-700 border-b-2 font-semibold"
+              : "font-semibold"
+          }
+          to="/"
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "text-purple-700 border-b-2 font-semibold"
+              : "font-semibold"
+          }
+          to="/allJobs"
+        >
+          All Jobs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "text-purple-700 border-b-2 font-semibold"
+              : "font-semibold"
+          }
+          to="/addAJob"
+        >
+          Add A Job
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "text-purple-700 border-b-2 font-semibold"
+              : "font-semibold"
+          }
+          to="/myAcceptedTasks"
+        >
+          My Accepted Tasks
+        </NavLink>
+      </li>
     </>
-      const handleSignOut=()=>{
-      signOutUser()
-     .then((result)=>{
-      toast.success("LogOut Successfully")
+  );
+  const handleSignOut = () => {
+    signOutUser()
+      .then((result) => {
+        toast.success("LogOut Successfully");
         console.log(result);
-     })
-     .catch(error=>{
-      toast.warning("Something Wrong")
-      console.log(error);
-     })
-     }
-     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-
+      })
+      .catch((error) => {
+        toast.warning("Something Wrong");
+        console.log(error);
+      });
+  };
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
     const html = document.querySelector("html");
@@ -32,68 +76,103 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-
   const handleTheme = (checked) => {
     setTheme(checked ? "dark" : "light");
   };
 
-    return (
-        <div className='shadow-sm bg-base-100'>
-       
+  return (
+    <div className="shadow-sm bg-base-100">
+      <div className="navbar  w-11/12 mx-auto  px-0">
+        <div className="navbar-start">
+          <Link to="/" className="text-5xl font-bold cursor-pointer">
+            F<span className="text-purple-800">M</span>
+          </Link>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{links}</ul>
+        </div>
+        <div className="navbar-end">
+          <input
+            onChange={(e) => handleTheme(e.target.checked)}
+            type="checkbox"
+            defaultChecked={localStorage.getItem("theme") === "dark"}
+            className="toggle"
+          />
 
-         <div className="navbar  w-11/12 mx-auto  px-0">
-  <div className="navbar-start">
- 
-    <Link to="/" className='text-5xl font-bold cursor-pointer'>F<span className='text-purple-800'>M</span></Link>
-  </div>
-  <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-      { links }
-      
-    </ul>
-  </div>
-  <div className="navbar-end">
-
-   <input
-           onChange={(e) => handleTheme(e.target.checked)}
-           type="checkbox"
-           defaultChecked={localStorage.getItem('theme') === "dark"}
-           className="toggle"/>
-
-
-     
-{
-    user ? (
-
-<div className="dropdown dropdown-end  dropdown-hover block ">
-      <div tabIndex={0} role="button" className="btn  btn-ghost btn-circle avatar">
-        <div className="w-12 border rounded-full">
-       <img src={user && user.photoURL ? user.photoURL 
-         : "https://img.daisyui.com/images/profile/demo/batperson@192.webp"} alt="User"
-/>
+          {user ? (
+            <div className="dropdown dropdown-end  dropdown-hover block ">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn  btn-ghost btn-circle avatar"
+              >
+                <div className="w-12 border rounded-full">
+                  <img
+                    src={
+                      user && user.photoURL
+                        ? user.photoURL
+                        : "https://img.daisyui.com/images/profile/demo/batperson@192.webp"
+                    }
+                    alt="User"
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex="-1"
+                className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+              >
+                <p className="text-center text-xl">
+                  {user && user.displayName ? user.displayName : "Guest"}
+                </p>
+                {links}
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-purple-700 border-b-2 pb-2 font-semibold"
+                        : "font-semibold"
+                    }
+                    to="/myPostedJobs"
+                  >
+                    My Posted Jobs
+                  </NavLink>
+                </li>
+                <button
+                  onClick={handleSignOut}
+                  className="btn  bg-purple-800 text-white font-semibold"
+                >
+                  LogOut
+                </button>
+              </ul>
+            </div>
+          ) : (
+            <div className="space-x-3">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-purple-700 text-white btn btn-outline"
+                    : "btn btn-outline"
+                }
+                to="login"
+              >
+                Login
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-purple-700 text-white btn btn-outline"
+                    : "btn btn-outline"
+                }
+                to="/register"
+              >
+                Register
+              </NavLink>
+            </div>
+          )}
         </div>
       </div>
-      <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-          <p className='text-center text-xl'>{user && user.displayName ? user.displayName : "Guest"}</p>
-         { links }
-              <li><NavLink className={({isActive})=>isActive?"text-purple-700 border-b-2 pb-2 font-semibold":"font-semibold"} to="/myPostedJobs">My Posted Jobs</NavLink></li>
-         <button onClick={handleSignOut} className='btn  bg-purple-800 text-white font-semibold'>LogOut</button>
-      </ul>
     </div>
-    )
-    :
-    (
-      <div className='space-x-3'>
-     <NavLink className={({isActive})=>isActive?"bg-purple-700 text-white btn btn-outline":"btn btn-outline"} to="login">Login</NavLink>
-    <NavLink className={({isActive})=>isActive?"bg-purple-700 text-white btn btn-outline":"btn btn-outline"} to="/register">Register</NavLink>
-    </div>
-     
-    )
-}
-  </div>
-</div>
-        </div>
-    );
+  );
 };
 
 export default Navbar;
