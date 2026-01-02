@@ -12,6 +12,10 @@ import Register from "../Pages/Register";
 import PrivateRoutes from "./PrivateRoutes";
 
 import ViewDetails from "../Components/ViewDetails";
+import AboutUs from './../Pages/AboutUs';
+import Contact from './../Pages/Contact';
+import JobsBlogsPage from './../Pages/Blogs';
+import JobsServicesPage from './../Pages/Services';
 
 const Routes = createBrowserRouter([
   {
@@ -27,6 +31,22 @@ const Routes = createBrowserRouter([
       {
         path: "/allJobs",
         element: <AllJobs></AllJobs>,
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/blogs",
+        element: <JobsBlogsPage></JobsBlogsPage>,
+      },
+      {
+        path: "/services",
+        element: <JobsServicesPage></JobsServicesPage>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
       },
       {
         path: "/viewDetails/:id",

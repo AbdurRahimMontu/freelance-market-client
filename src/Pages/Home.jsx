@@ -9,12 +9,14 @@ const Home = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    axios.get("https://freelance-market-server.vercel.app/latestJobs").then((data) => {
+    axios.get("https://freelance-market-server.vercel.app/latestJobs")
+     .then((data) => {
       setJobs(data.data);
       console.log(data.data);
     });
   }, []);
-  console.log(jobs);
+
+
   return (
     <div>
       <Banner></Banner>

@@ -29,13 +29,13 @@ const ClientComment = () => {
 
  <div className="hero bg-base-100 rounded-2xl shadow-md p-6 hover:shadow-lg transition">
       <div className="hero-content flex flex-col items-center text-center">
-        <motion.img whileHover={{
+       ` <motion.img whileHover={{
         scale: 1.2,
       }}
           src={client2}
           alt="Client2"
           className="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-full shadow"
-        />
+        />`
         <p className="py-4 text-base sm:text-lg text-justify leading-relaxed">
           I am truly impressed by the outstanding service I experienced! The
           team showed remarkable dedication to fulfilling my requirements,
