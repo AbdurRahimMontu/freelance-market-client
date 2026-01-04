@@ -17,6 +17,14 @@ import Contact from './../Pages/Contact';
 import JobsBlogsPage from './../Pages/Blogs';
 import JobsServicesPage from './../Pages/Services';
 
+import DashboardLayout from "../Layouts/DashboardLayout";
+import UserProfile from "../Pages/dashboard/UserProfile ";
+import AdminProfile from "../Pages/dashboard/AdminProfile";
+import AdminRoute from "../Pages/dashboard/AdminRoute";
+import Overview from "../Pages/dashboard/Overview";
+// import Overview from "../Pages/dashboard/Overview";
+
+
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -59,22 +67,8 @@ const Routes = createBrowserRouter([
           fetch(`https://freelance-market-server.vercel.app/allJobs/${params.id}`),
       },
 
-      {
-        path: "/addAJob",
-        element: (
-          <PrivateRoutes>
-            <AddAJob></AddAJob>
-          </PrivateRoutes>
-        ),
-      },
-      {
-        path: "/myAcceptedTasks",
-        element: (
-          <PrivateRoutes>
-            <MyAcceptedTasks></MyAcceptedTasks>
-          </PrivateRoutes>
-        ),
-      },
+      
+    
       {
         path: "login",
         element: <Login></Login>,
@@ -83,14 +77,14 @@ const Routes = createBrowserRouter([
         path: "register",
         element: <Register></Register>,
       },
-      {
-        path: "/myPostedJobs",
-        element: (
-          <PrivateRoutes>
-            <MyPostedJobs></MyPostedJobs>
-          </PrivateRoutes>
-        ),
-      },
+      // {
+      //   path: "/myPostedJobs",
+      //   element: (
+      //     <PrivateRoutes>
+      //       <MyPostedJobs></MyPostedJobs>
+      //     </PrivateRoutes>
+      //   ),
+      // },
       {
         path: "/updateJob/:id",
         element: (
@@ -102,9 +96,40 @@ const Routes = createBrowserRouter([
           fetch(`https://freelance-market-server.vercel.app/allJobs/${params.id}`),
       },
 
-      {},
-    ],
+  {
+  path:'dashboard',
+  element:<PrivateRoutes><DashboardLayout></DashboardLayout>
+          </PrivateRoutes>,
+  children:[
+      {path:"overview",element: <Overview></Overview>},
+      {path:"myPostedJobs",element:<MyPostedJobs></MyPostedJobs>},
+        {
+        path: "myAcceptedTasks",
+        element: (
+          
+            <MyAcceptedTasks></MyAcceptedTasks>
+          
+        ),
+      },
+      {
+        path: "addAJob",
+        element: (
+        
+            <AddAJob></AddAJob>
+      
+        ),
+      },
+      {path: "profile",element: <UserProfile />},
+      {path: "admin/profile",
+       element: (<AdminRoute><AdminProfile /></AdminRoute>)}
+           ]
   },
+
+  ],
+  },
+  {
+
+  }
 ]);
 
 export default Routes;
